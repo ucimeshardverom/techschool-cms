@@ -1,0 +1,28 @@
+.markdownx {
+    width: 100%;
+}
+
+.markdownx-editor  {
+    width: 100%;
+    min-height: 500px;
+    border: 1px;
+}
+
+.markdownx-preview {
+    display: none;
+}
+
+textarea{
+  display: block;
+  box-sizing: padding-box;
+  overflow: hidden;
+
+  padding: 10px;
+  width: 250px;
+  font-size: 14px;
+  margin: 50px auto;
+  border-radius: 6px;
+    outline: none !important;
+    border:1px solid red;
+    box-shadow: 0 0 10px #719ECE;
+}

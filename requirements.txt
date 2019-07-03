@@ -1,0 +1,15 @@
+django-cms
+gunicorn
+djangocms-text-ckeditor
+djangocms-link
+djangocms-file
+djangocms-picture
+djangocms-video
+djangocms-googlemap
+djangocms-snippet
+djangocms-style
+djangocms-column
+djangocms-bootstrap4
+Markdown
+django-markwhat
+cmsplugin-markdown

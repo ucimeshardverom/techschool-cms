@@ -1,0 +1,10 @@
+{% extends "base_layout.html" %}
+{% load cms_tags sekizai_tags %}
+{% load static %}
+
+{% block main_content %}
+{% placeholder "top_content" %}
+<div class="container">
+    {% placeholder "content" %}
+</div>
+{% endblock %}
