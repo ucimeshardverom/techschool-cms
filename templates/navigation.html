@@ -24,3 +24,16 @@
     {% endif %}
 <!-- /has child pages  -->
 {% endfor %}
+<!--ALLAUTH LOGIN OR REGISTRATION-->
+{% if not user.is_authenticated %}
+    <li class="nav-item">
+        <a href="/accounts/login/?next={{ request.path }}">
+            <button class="btn btn-outline-light navbar-btn">Login</button>
+        </a>
+    </li>
+{% else %}
+    <li class="nav-item">
+        <a href="/accounts/logout/">
+            <button class="btn btn-outline-dark navbar-btn">Logout</button>
+        </a></li>
+{% endif %}
