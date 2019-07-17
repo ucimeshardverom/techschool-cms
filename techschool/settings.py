@@ -207,3 +207,9 @@ CMS_TEMPLATES = [("index.html", "Standard page template"), ("carousel.html", "Ca
 
 TEXT_ADDITIONAL_TAGS = ('iframe',)
 TEXT_ADDITIONAL_ATTRIBUTES = ('scrolling', 'allowfullscreen', 'frameborder', 'src', 'height', 'width')
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# allauth settings
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
