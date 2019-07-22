@@ -73,6 +73,10 @@ INSTALLED_APPS = [
     'djangocms_bootstrap4.contrib.bootstrap4_utilities',
     'django_markwhat',
     'cmsplugin_markdown',
+    # Blog
+    'django_comments',
+    'tagging',
+    'zinnia',
 ]
 
 MIDDLEWARE = [
@@ -106,6 +110,8 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "sekizai.context_processors.sekizai",
                 "cms.context_processors.cms_settings",
+                "django.template.context_processors.i18n",
+                "zinnia.context_processors.version",
             ]
         },
     }
