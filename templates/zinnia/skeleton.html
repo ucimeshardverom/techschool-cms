@@ -1,0 +1,100 @@
+{% load i18n %}
+{% load staticfiles %}
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock title %}{% block title-page %}{% endblock title-page %} - Zinnia's Weblog</title>
+    <meta name="robots" content="follow, all" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="{% block meta-description %}{% trans "Just another Zinnia weblog." %}{% endblock meta-description %}{% block meta-description-page %}{% endblock meta-description-page %}" />
+    <meta name="keywords" content="{% block meta-keywords %}django, blog, weblog, zinnia{% endblock meta-keywords %}" />
+    <meta name="author" content="Fantomas42" />
+    {% block meta %}{% endblock meta %}
+    <link rel="pingback" href="/xmlrpc/" />
+    <link rel="shortcut icon" href="{% static "zinnia/theme/img/favicon.ico" %}" />
+    <link rel="home" href="{% url 'zinnia:entry_archive_index' %}" />
+    <link rel="stylesheet" type="text/css" media="screen, projection" href="{% static "zinnia/theme/css/screen.css" %}" />
+    <link rel="stylesheet" type="text/css" media="print" href="{% static "zinnia/theme/css/print.css" %}" />
+    <!--[if lt IE 8]>
+        <link rel="stylesheet" type="text/css" media="screen, projection" href="{% static "zinnia/theme/css/ie.css" %}" />
+    <![endif]-->
+    {% block link %}{% endblock link %}
+    <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/python.css' %}" rel="stylesheet">
+    {% block script %}{% endblock script %}
+  </head>
+  <body class="zinnia {% block theme-class %}default{% endblock theme-class %} {% block color-class %}blue{% endblock color-class %} {% block sidebar-class %}right-sidebar{% endblock sidebar-class %} {% block body-class %}{% endblock body-class %}">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding-top:0px; padding-bottom:0px">
+      <div class="container d-flex justify-content-between">
+        <a class="navbar-brand d-flex align-items-center" href="/weblog">
+          <img alt="Python logo" class="header-logo" src="{% static 'img/logo/logo-colour.png' %}"/>
+          <strong style="color:white">
+            Učíme s Hardvérom - Blog
+          </strong>
+        </a>
+        <div class="justify-content-end collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <ul>
+              <li class="nav-item" style="list-style:none;">
+                <a href="{% url 'zinnia:sitemap' %}" title="{% trans "Sitemap" %}" class="sitemap" style="color:white" rel="sitemap">
+                  {% trans "Sitemap" %}
+                </a>
+              </li>
+              <li class="nav-item" style="list-style:none;">
+                <a href="{% url 'zinnia:entry_feed' %}" title="{% trans "RSS feed of last entries" %}" class="feeds" style="color:white">
+                  {% trans "RSS feed" %}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <button aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"
+        class="navbar-toggler" data-target="#navbarNavAltMarkup" data-toggle="collapse" type="button">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+    <div class="container">
+      <header class="mb-3" id="header" role="banner">
+        <form method="get" action="{% url 'zinnia:entry_search' %}">
+          <p>
+            <input type="text" name="pattern" placeholder="{% trans "Keywords..." %}" {% if pattern %}value="{{ pattern }}"{% endif %} />
+            <input type="submit" class="submitbutton" value="OK" />
+          </p>
+        </form>
+      </header>
+      {% block slider %}{% endblock slider %}
+      <div id="content" class="hfeed" role="main">
+        {% block content %}
+        <div class="links">
+          <h2>{% trans "Useful links" %}</h2>
+          <ul>
+            <li>
+              <a href="{% url 'zinnia:entry_archive_index' %}" title="{% trans "Weblog index" %}">
+                {% trans "Weblog index" %}
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'zinnia:sitemap' %}" title="{% trans "Sitemap" %}">
+                {% trans "Sitemap" %}
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="search">
+          <h2>{% trans "Search" %}</h2>
+          {% include "zinnia/tags/search_form.html" %}
+        </div>
+        {% endblock content %}
+      </div>
+      <div id="sidebar" role="complementary">
+        {% block sidebar %}
+        {% endblock sidebar %}
+      </div>
+      <footer id="footer" role="contentinfo">
+        <p>{% blocktrans %}Powered by <a href="http://www.djangoproject.com">Django</a> and <a href="https://github.com/Fantomas42/django-blog-zinnia">Zinnia {{ ZINNIA_VERSION }}</a>.{% endblocktrans %}</p>
+      </footer>
+    </div>
+  </body>
+</html>
