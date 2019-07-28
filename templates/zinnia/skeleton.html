@@ -40,11 +40,13 @@
             <ul>
               <li class="nav-item" style="list-style:none;">
                 <a href="{% url 'zinnia:sitemap' %}" title="{% trans "Sitemap" %}" class="sitemap" style="color:white" rel="sitemap">
+                  <img alt="Sitemap logo" src="{% static 'zinnia/theme/img/sitemap.png'%}">
                   {% trans "Sitemap" %}
                 </a>
               </li>
               <li class="nav-item" style="list-style:none;">
                 <a href="{% url 'zinnia:entry_feed' %}" title="{% trans "RSS feed of last entries" %}" class="feeds" style="color:white">
+                  <img alt="RSS logo" src="{% static 'zinnia/theme/img/rss.png'%}">
                   {% trans "RSS feed" %}
                 </a>
               </li>
