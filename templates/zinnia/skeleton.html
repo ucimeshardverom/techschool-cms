@@ -97,6 +97,9 @@
         {% endblock sidebar %}
       </div>
       <footer id="footer" role="contentinfo">
+        <div class="text-muted text-center" style="font-size: 1rem">
+        {% include 'footer.html' %}
+        </div>
         <p>{% blocktrans %}Powered by <a href="http://www.djangoproject.com">Django</a> and <a href="https://github.com/Fantomas42/django-blog-zinnia">Zinnia {{ ZINNIA_VERSION }}</a>.{% endblocktrans %}</p>
       </footer>
     </div>
