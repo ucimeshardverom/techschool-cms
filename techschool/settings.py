@@ -67,7 +67,7 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    # "allauth.socialaccount.providers.facebook",
+    "allauth.socialaccount.providers.facebook",
     # "allauth.socialaccount.providers.github",
     # "allauth.socialaccount.providers.google",
     # "allauth.socialaccount.providers.instagram",
@@ -212,3 +212,31 @@ AUTHENTICATION_METHOD = 'email'
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_USERNAME_REQURIED=True
+
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook':
+       {'METHOD': 'oauth2',
+        'SCOPE': ['email','public_profile', 'user_friends'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'verified',
+            'locale',
+            'timezone',
+            'link',
+            'gender',
+            'updated_time'],
+        'EXCHANGE_TOKEN': True,
+        'LOCALE_FUNC': lambda request: 'sk_SK',
+        'VERIFIED_EMAIL': True,
+        'VERSION': 'v2.4'}
+}
+
+#facebook
+SOCIAL_AUTH_FACEBOOK_KEY = '123456'  # change this in production
+SOCIAL_AUTH_FACEBOOK_SECRET ='deadbeef'  # change this in production
