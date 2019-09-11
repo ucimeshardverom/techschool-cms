@@ -1,0 +1,69 @@
+{% extends "base_layout.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block main_content %}
+<div class="container">  <!-- BEGIN container -->
+
+<h1>{% trans "Sign In" %}</h1>
+
+{% get_providers as socialaccount_providers %}
+
+<!-- SOCIAL PROVIDERS LOGIN -->
+{% if socialaccount_providers %}
+<p>{% blocktrans with site.name as site_name %}Please sign in with one
+of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+
+<div class="socialaccount_ballot">
+
+  <ul class="socialaccount_providers">
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+  </ul>
+
+  <div class="login-or">{% trans 'or' %}</div>
+
+</div>
+
+{% include "socialaccount/snippets/login_extra.html" %}
+
+{% else %}
+<!-- PLAIN LOGIN -->
+<p>{% blocktrans %}If you have not created an account yet, then please
+<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+{% endif %}
+
+<form class="login" method="POST" action="{% url 'account_login' %}">
+  {% csrf_token %}
+<p>
+  <div class="form-group">
+    <label for="login-field">Login</label>
+    <input type="text" class="form-control" id="login-field" name="login" aria-describedby="emailHelp" placeholder="Enter username">
+  </div>
+</p>
+<p>
+  <div class="form-group">
+    <label for="password-field">Password</label>
+      <input type="password" class="form-control" id="password-field" name="password" placeholder="Password">
+  </div>
+</p>
+<p>
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="remember-field" name="remember">
+    <label class="checkbox" for="remember-field">Remember me</label>
+  </div>
+</p>
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <p><a class="secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a></p>
+  <button class="btn btn-primary" type="submit">{% trans "Sign In" %}</button>
+</form>
+
+
+
+</div>  <!-- END container -->
+{% endblock %}
